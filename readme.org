@@ -1,0 +1,10 @@
+#+LaTeX_HEADER: \include{org-latex.tex}
+* Kalman filter
+** Theoretical background
+The implementation of the code is based on the tutorial from [[https://www.kalmanfilter.net][this site]]. 
+
+The Kalman filter starts from the state-space representation of a linear time invariant system:
+\[ \boldsymbol{\dot x} (t) =  \mata \matx(t) + \matb \boldsymbol{u}(t) \]
+
+
+
