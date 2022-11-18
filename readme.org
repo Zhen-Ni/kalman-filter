@@ -4,13 +4,13 @@
 The implementation of the code is based on the tutorial from [[https://www.kalmanfilter.net][this site]]. 
 
 The Kalman filter starts from the state-space representation of a linear time invariant system:
-\[ \boldsymbol{\dot x} (t) =  \mata \matx(t) + \matb \boldsymbol{u}(t) \]
+$$ \boldsymbol{\dot x} (t) =  \mata \matx(t) + \matb \boldsymbol{u}(t) $$
 
 simple latex expression:
-\[ \dot {x} \]
+$$ \dot {x} $$
 
 boldsymbol
-\[ \boldsymbol{A} \]
+$$ \boldsymbol{A} $$
 
 end
 
