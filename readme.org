@@ -7,6 +7,7 @@ The implementation of the code is based on the tutorial from [[https://www.kalma
 
 The Kalman filter starts from the state-space representation of a linear time invariant (LTI) system:
 
+#+ATTR_HTML: :width 50% :height 50%
 [[file:figures/lti-system.png]]
 
 The corresponding discrete form is written as:
@@ -29,10 +30,10 @@ The Kalman filter operates in a "predict-correct" loop. In the "predict" step, t
 
 After given an inital estimation of the state vector and its unceratinty, the Kalman filter is able to make its first prediction. Then, after [[file:figures/dt.png]], the measurement of the system output is obtained, the Kalman filter can correct its last prediction by the measured data, and make new prediction for the next timestep. The following table provides an intuitive explaination of how kalman filter works:
 
-| index | timestep | operation                                          |
-|-------+----------+----------------------------------------------------|
-|     0 |        0 | initial estimation of [[file:figures/x00.png][x_{0,0}]] and [[file:figures/P00.png][P_{0,0}]]          |
-|     1 |        0 | make predictions of  [[file:figures/x10.png][x_{1,0}]] and [[file:figures/P10.png][P_{1,0}]]           |
-|     2 |        1 | get the measured system output [[file:figures/z1.png]] |
-|       |          |                                                    |
+| index | timestep | operation                                                           |
+|-------+----------+---------------------------------------------------------------------|
+|     0 |        0 | initial estimation of [[file:figures/x00.png]] and [[file:figures/P00.png]] |
+|     1 |        0 | make predictions of  [[file:figures/x10.png]] and [[file:figures/P10.png]]  |
+|     2 |        1 | get the measured system output [[file:figures/z1.png]]                  |
+|       |          |                                                                     |
 
