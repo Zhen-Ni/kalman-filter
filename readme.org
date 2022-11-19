@@ -1,10 +1,11 @@
 
 
-* kalman filter
-** theoretical background
-the implementation of the code is based on the tutorial from [[https://www.kalmanfilter.net][this site]]. 
+* Kalman filter
+** Theoretical background
+*** LTI system
+The implementation of the code is based on the tutorial from [[https://www.kalmanfilter.net][this site]]. 
 
-the kalman filter starts from the state-space representation of a linear time invariant system:
+The Kalman filter starts from the state-space representation of a linear time invariant (LTI) system:
 
 [[file:figures/lti-system.png]]
 
@@ -12,9 +13,25 @@ The corresponding discrete form is written as:
 
 [[file:figures/lti-system-discrete.png]]
 
+The transformation of the continuous and discrete state-space representations can be given by:
+
+[[file:figures/continuous-to-discrete.png]]
+
+The measurement of the system is given by:
+
+[[file:figures/measurement-of-lti-system.png]]
 
 
+*** Kalman filter
+The Kalman filter is acutally a state observer of the LTI-system.
 
+The Kalman filter operates in a "predict-correct" loop. In the "predict" step, the estimation of the state vector of the next timestep is calculated along with its unceratinty. And in the "correct" loop, the measurement of the output vector is obtained and it is used to correct the predicted state vector and its unceratinty. 
 
+After given an inital estimation of the state vector and its unceratinty, the Kalman filter is able to make its first prediction. Then, after [[file:figures/dt.png][\Delta{}t]], the measurement of the system output is obtained, the Kalman filter can correct its last prediction by the measured data, and make new prediction for the next timestep. The following table provides an intuitive explaination of how kalman filter works:
 
+| index | timestep | operation                                 |
+|-------+----------+-------------------------------------------|
+|     0 |        0 | initial estimation of [[file:figures/x00.png][x_{0,0}]] and [[file:figures/P00.png][P_{0,0}]] |
+|     1 |        0 | make predictions of  [[file:figures/x10.png][x_{1,0}]] and [[file:figures/P10.png][P_{1,0}]]  |
+|     2 |        1 | get the measured system output [[file:figures/z1.png][z_1]]        |
 

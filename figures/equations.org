@@ -4,7 +4,7 @@ Github doesn't support previewing latex equations in readme.org, we could genera
 
 #+header: :file lti-system.png :buffer no
 #+BEGIN_SRC latex 
-  \LARGE
+  \Large
   $$ \dot \matx (t) =  \matA \matx(t) + \matB \matu(t) $$
   where: \\
   $\matx$ is the state vector \\
@@ -19,7 +19,7 @@ Github doesn't support previewing latex equations in readme.org, we could genera
 
 #+header: :file lti-system-discrete.png :buffer no
 #+BEGIN_SRC latex 
-  \LARGE
+  \Large
   $$ \dot \matx_{n+1} =  \matF \matx_n + \matG \matu_n $$
   where: \\
   $\matx_{n+1}$ is the state vector at timestep $n+1$ \\
@@ -28,6 +28,89 @@ Github doesn't support previewing latex equations in readme.org, we could genera
   $\matF$ is the state transition matrix \\
   $\matG$ is the control matrix or input transition matrix \\
 #+END_SRC
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file continuous-to-discrete.png :buffer no
+#+begin_src latex
+  \Large
+  $$\matF = \mathrm{e}^{\matA \dt} $$
+  $$\matG = \int_t^{t+\dt}\mathrm{e}^{\matA \tau}\mathrm{d}\tau\cdot\matB$$
+  where: \\
+  $t$ is the time of timestep $n$ \\
+  $t+\dt$ is the time of timestep $n+1$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file measurement-of-lti-system.png :buffer no
+#+begin_src latex
+  \Large
+  $$\matz _n = \matH x_n$$
+  where: \\
+  $\matz_n$ is the output vector \\
+  $\matH$ is the obervation matrix, and is usually represented by $\matC$ for continuous systems
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file dt.png :buffer no
+#+begin_src latex
+  $\dt$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file x00.png :buffer no
+#+begin_src latex
+  $\hat \matx_{0,0}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file P00.png :buffer no
+#+begin_src latex
+  $\matP_{0,0}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file x10.png :buffer no
+#+begin_src latex
+  $\hat \matx_{1,0}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file P10.png :buffer no
+#+begin_src latex
+  $\matP_{1,0}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file z1.png :buffer no
+#+begin_src latex
+  $\matz_1$
+#+end_src
 
 #+RESULTS:
 #+begin_export latex
