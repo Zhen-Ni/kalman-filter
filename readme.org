@@ -7,10 +7,7 @@ The Kalman filter starts from the state-space representation of a linear time in
 
 [[file:figures/lti-system.png]]
 
-#+BEGIN_EXPORT html
-<p align="center"><img src="figures/lti-system.png" /></p>
-  All lines between these markers are exported literally
-#+END_EXPORT
+#+html: <p align="center"><img src="figures/lti-system.png" /></p>
 
 The corresponding discrete form is written as:
 
