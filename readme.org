@@ -1,18 +1,20 @@
-#+LaTeX_HEADER: \include{org-latex.tex}
-* Kalman filter
-** Theoretical background
-The implementation of the code is based on the tutorial from [[https://www.kalmanfilter.net][this site]]. 
 
-The Kalman filter starts from the state-space representation of a linear time invariant system:
-$$ \boldsymbol{\dot x} (t) =  \mata \matx(t) + \matb \boldsymbol{u}(t) $$
 
-simple latex expression:
-$$ \dot {x} $$
+* kalman filter
+** theoretical background
+the implementation of the code is based on the tutorial from [[https://www.kalmanfilter.net][this site]]. 
 
-boldsymbol
-$$ \boldsymbol{A} $$
+the kalman filter starts from the state-space representation of a linear time invariant system:
 
-end
+[[file:figures/lti-system.png]]
+
+The corresponding discrete form is written as:
+
+[[file:figures/lti-system-discrete.png]]
+
+
+
+
 
 
 

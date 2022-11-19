@@ -1,0 +1,34 @@
+Github doesn't support previewing latex equations in readme.org, we could generate the figures for the mathmatical formulas manually.
+
+#+LaTeX_HEADER: \include{org-latex.tex}
+
+#+header: :file lti-system.png :buffer no
+#+BEGIN_SRC latex 
+  \LARGE
+  $$ \dot \matx (t) =  \matA \matx(t) + \matB \matu(t) $$
+  where: \\
+  $\matx$ is the state vector \\
+  $\matu$ is the control variable or input variable\\
+  $\matA$ is the system's dynamics matrix \\
+  $\matB$ is the input matrix \\
+#+END_SRC
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file lti-system-discrete.png :buffer no
+#+BEGIN_SRC latex 
+  \LARGE
+  $$ \dot \matx_{n+1} =  \matF \matx_n + \matG \matu_n $$
+  where: \\
+  $\matx_{n+1}$ is the state vector at timestep $n+1$ \\
+  $\matx_{n}$ is the state vector at timestep $n$ \\
+  $\matu_n$ is the control variable or input variable\\
+  $\matF$ is the state transition matrix \\
+  $\matG$ is the control matrix or input transition matrix \\
+#+END_SRC
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
