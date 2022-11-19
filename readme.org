@@ -1,5 +1,3 @@
-
-
 * Kalman filter
 ** Theoretical background
 *** LTI system
@@ -7,8 +5,9 @@ The implementation of the code is based on the tutorial from [[https://www.kalma
 
 The Kalman filter starts from the state-space representation of a linear time invariant (LTI) system:
 
-#+ATTR_HTML: :width 50% :height 50%
 [[file:figures/lti-system.png]]
+
+<p align="center"><img src="figures/lti-system.png" /></p>
 
 The corresponding discrete form is written as:
 
