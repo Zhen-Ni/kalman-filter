@@ -2,6 +2,7 @@ Github doesn't support previewing latex equations in readme.org, we could genera
 
 #+LaTeX_HEADER: \include{org-latex.tex}
 
+* LTI systems
 #+header: :file lti-system.png :buffer no
 #+BEGIN_SRC latex 
   \Large
@@ -60,6 +61,23 @@ Github doesn't support previewing latex equations in readme.org, we could genera
 #+begin_export latex
 #+end_export
 
+#+header: :file lti-system-with-uncertainty.png :buffer no
+#+begin_src latex
+  \Large
+  $$ \dot \matx_{n+1} =  \matF \matx_n + \matG \matu_n +\matw_n$$
+  $$\matz _n = \matH x_n + \matv_n$$
+  where: \\
+  $\matw_n$ is the process noise vector \\
+  $\matv_n$ is the measurement noise vector
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+* Symols
+
+** General
 #+header: :file dt.png :buffer no
 #+begin_src latex
   $\dt$
@@ -68,6 +86,9 @@ Github doesn't support previewing latex equations in readme.org, we could genera
 #+RESULTS:
 #+begin_export latex
 #+end_export
+
+** Kalman filter
+*** Init
 
 #+header: :file x00.png :buffer no
 #+begin_src latex
@@ -88,6 +109,8 @@ Github doesn't support previewing latex equations in readme.org, we could genera
 #+begin_export latex
 #+end_export
 
+
+
 #+header: :file x10.png :buffer no
 #+begin_src latex
   $\hat \matx_{1,0}$
@@ -107,9 +130,211 @@ Github doesn't support previewing latex equations in readme.org, we could genera
 #+begin_export latex
 #+end_export
 
+** /n/ = 1
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
 #+header: :file z1.png :buffer no
 #+begin_src latex
   $\matz_1$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file R1.png :buffer no
+#+begin_src latex
+  $\matR_1$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file x11.png :buffer no
+#+begin_src latex
+  $\hat \matx_{1,1}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file P11.png :buffer no
+#+begin_src latex
+  $\matP_{1,1}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file x21.png :buffer no
+#+begin_src latex
+  $\hat \matx_{2,1}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file P21.png :buffer no
+#+begin_src latex
+  $\matP_{2,1}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+** /n/ = 2
+
+#+header: :file z2.png :buffer no
+#+begin_src latex
+  $\matz_2$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file R2.png :buffer no
+#+begin_src latex
+  $\matR_2$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file x22.png :buffer no
+#+begin_src latex
+  $\hat \matx_{2,2}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file P22.png :buffer no
+#+begin_src latex
+  $\matP_{2,2}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file x32.png :buffer no
+#+begin_src latex
+  $\hat \matx_{3,2}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file P32.png :buffer no
+#+begin_src latex
+  $\matP_{3,2}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+** /n/ = n
+
+#+header: :file zn.png :buffer no
+#+begin_src latex
+  $\matz_n$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file Rn.png :buffer no
+#+begin_src latex
+  $\matR_n$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file xnn.png :buffer no
+#+begin_src latex
+  $\hat \matx_{n,n}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file Pnn.png :buffer no
+#+begin_src latex
+  $\matP_{n,n}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file xnp1n.png :buffer no
+#+begin_src latex
+  $\hat \matx_{n+1,n}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+
+#+header: :file Pnp1n.png :buffer no
+#+begin_src latex
+  $\matP_{n+1,n}$
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+* Kalman filter
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file update.png :buffer no
+#+begin_src latex
+  \Large
+  $$\hat\matx_{n+1,n}=\matF\matx_{n,n}+\matG\matu_n$$
+  $$\matP_{n+1,n}=\matF\matP_{n,n}\matF^\mathrm{T}+\matQ_n$$
+  where:\\
+  $\matQ_n=E(\matw_n\matw_n\transpose)$ is the process noise uncertainty
+#+end_src
+
+#+RESULTS:
+#+begin_export latex
+#+end_export
+
+#+header: :file simplified-corvariance-update.png :buffer no
+#+begin_src latex
+  \Large
+  $$\matP_{n,n}=\left(\matI-\matK_n\matH\right)\matP_{n,n-1}$$
 #+end_src
 
 #+RESULTS:

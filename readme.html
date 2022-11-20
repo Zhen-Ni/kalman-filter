@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-11-19 Sat 21:01 -->
+<!-- 2022-11-19 Sat 23:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -246,12 +246,12 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5f4b867">1. Kalman filter</a>
+<li><a href="#org3314c7a">1. Kalman filter</a>
 <ul>
-<li><a href="#orga479693">1.1. Theoretical background</a>
+<li><a href="#org3047211">1.1. Theoretical background</a>
 <ul>
-<li><a href="#org37ee16d">1.1.1. LTI system</a></li>
-<li><a href="#org44b1fc2">1.1.2. Kalman filter</a></li>
+<li><a href="#org0e69d3f">1.1.1. LTI system</a></li>
+<li><a href="#orgc082fe9">1.1.2. Kalman filter</a></li>
 </ul>
 </li>
 </ul>
@@ -259,16 +259,16 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org5f4b867" class="outline-2">
-<h2 id="org5f4b867"><span class="section-number-2">1</span> Kalman filter</h2>
+<div id="outline-container-org3314c7a" class="outline-2">
+<h2 id="org3314c7a"><span class="section-number-2">1</span> Kalman filter</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga479693" class="outline-3">
-<h3 id="orga479693"><span class="section-number-3">1.1</span> Theoretical background</h3>
+<div id="outline-container-org3047211" class="outline-3">
+<h3 id="org3047211"><span class="section-number-3">1.1</span> Theoretical background</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org37ee16d" class="outline-4">
-<h4 id="org37ee16d"><span class="section-number-4">1.1.1</span> LTI system</h4>
+<div id="outline-container-org0e69d3f" class="outline-4">
+<h4 id="org0e69d3f"><span class="section-number-4">1.1.1</span> LTI system</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 The implementation of the code is based on the tutorial from <a href="https://www.kalmanfilter.net">this site</a>. 
@@ -283,9 +283,6 @@ The Kalman filter starts from the state-space representation of a linear time in
 <p><img src="figures/lti-system.png" alt="lti-system.png" />
 </p>
 </div>
-
-<p align="center"><img src="figures/lti-system.png" /></p>
-  All lines between these markers are exported literally
 
 <p>
 The corresponding discrete form is written as:
@@ -320,64 +317,134 @@ The measurement of the system is given by:
 </div>
 
 
-<div id="outline-container-org44b1fc2" class="outline-4">
-<h4 id="org44b1fc2"><span class="section-number-4">1.1.2</span> Kalman filter</h4>
+<div id="outline-container-orgc082fe9" class="outline-4">
+<h4 id="orgc082fe9"><span class="section-number-4">1.1.2</span> Kalman filter</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 The Kalman filter is acutally a state observer of the LTI-system.
 </p>
 
 <p>
-The Kalman filter operates in a "predict-correct" loop. In the "predict" step, the estimation of the state vector of the next timestep is calculated along with its unceratinty. And in the "correct" loop, the measurement of the output vector is obtained and it is used to correct the predicted state vector and its unceratinty. 
+The Kalman filter operates in a "predict-update" loop. In the "predict" step, the estimation of the state vector of the next timestep is calculated along with its unceratinty. And in the "update" step, the measurement of the output vector is obtained and it is used to update the predicted state vector and its unceratinty. 
 </p>
 
 <p>
-After given an inital estimation of the state vector and its unceratinty, the Kalman filter is able to make its first prediction. Then, after <img src="figures/dt.png" alt="dt.png" />, the measurement of the system output is obtained, the Kalman filter can correct its last prediction by the measured data, and make new prediction for the next timestep. The following table provides an intuitive explaination of how kalman filter works:
+After given an inital estimation of the state vector and its unceratinty, the Kalman filter is able to make its first prediction. Then, after <img src="figures/dt.png" alt="dt.png" />, the measurement of the system output is obtained, the Kalman filter can correct its last prediction by the measured data, get the updated state variables, and make new prediction for the next timestep. The following table provides an intuitive explaination of how kalman filter works:
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="org-right" />
+<col  class="org-center" />
 
-<col  class="org-right" />
+<col  class="org-center" />
 
-<col  class="org-left" />
+<col  class="org-center" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-right">index</th>
-<th scope="col" class="org-right">timestep</th>
-<th scope="col" class="org-left">operation</th>
+<th scope="col" class="org-center">index</th>
+<th scope="col" class="org-center">timestep</th>
+<th scope="col" class="org-center">operation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-right">0</td>
-<td class="org-right">0</td>
-<td class="org-left">initial estimation of <img src="figures/x00.png" alt="x00.png" /> and <img src="figures/P00.png" alt="P00.png" /></td>
+<td class="org-center">0</td>
+<td class="org-center">0</td>
+<td class="org-center">initial estimation of <img src="figures/x00.png" alt="x00.png" /> and <img src="figures/P00.png" alt="P00.png" /></td>
 </tr>
 
 <tr>
-<td class="org-right">1</td>
-<td class="org-right">0</td>
-<td class="org-left">make predictions of  <img src="figures/x10.png" alt="x10.png" /> and <img src="figures/P10.png" alt="P10.png" /></td>
+<td class="org-center">1</td>
+<td class="org-center">0</td>
+<td class="org-center"><i>predict:</i> make predictions of <img src="figures/x10.png" alt="x10.png" /> and <img src="figures/P10.png" alt="P10.png" /></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-center">2</td>
+<td class="org-center">1</td>
+<td class="org-center">get the measured system output <img src="figures/z1.png" alt="z1.png" /> and its unceratinty <img src="figures/R1.png" alt="R1.png" /></td>
 </tr>
 
 <tr>
-<td class="org-right">2</td>
-<td class="org-right">1</td>
-<td class="org-left">get the measured system output <img src="figures/z1.png" alt="z1.png" /></td>
+<td class="org-center">3</td>
+<td class="org-center">1</td>
+<td class="org-center"><i>update:</i> update current state <img src="figures/x11.png" alt="x11.png" /> and unceratinty <img src="figures/P11.png" alt="P11.png" /></td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-center">4</td>
+<td class="org-center">1</td>
+<td class="org-center"><i>predict:</i> make predictions of <img src="figures/x21.png" alt="x21.png" /> and <img src="figures/P21.png" alt="P21.png" /></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-center">5</td>
+<td class="org-center">2</td>
+<td class="org-center">get the measured system output <img src="figures/z2.png" alt="z2.png" /> and its unceratinty <img src="figures/R2.png" alt="R2.png" /></td>
+</tr>
+
+<tr>
+<td class="org-center">6</td>
+<td class="org-center">2</td>
+<td class="org-center"><i>update:</i> update current state <img src="figures/x22.png" alt="x22.png" /> and unceratinty <img src="figures/P22.png" alt="P22.png" /></td>
+</tr>
+
+<tr>
+<td class="org-center">7</td>
+<td class="org-center">2</td>
+<td class="org-center"><i>predict:</i> make predictions of <img src="figures/x32.png" alt="x32.png" /> and <img src="figures/P32.png" alt="P32.png" /></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-center">&#x2026;</td>
+<td class="org-center">&#x2026;</td>
+<td class="org-center">&#x2026;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-center">3n-1</td>
+<td class="org-center">n</td>
+<td class="org-center">get the measured system output <img src="figures/zn.png" alt="zn.png" /> and its unceratinty <img src="figures/Rn.png" alt="Rn.png" /></td>
+</tr>
+
+<tr>
+<td class="org-center">3n</td>
+<td class="org-center">n</td>
+<td class="org-center"><i>update:</i> update current state <img src="figures/xnn.png" alt="xnn.png" /> and unceratinty <img src="figures/Pnn.png" alt="Pnn.png" /></td>
+</tr>
+
+<tr>
+<td class="org-center">3n+1</td>
+<td class="org-center">n</td>
+<td class="org-center"><i>predict:</i> make predictions of <img src="figures/xnp1n.png" alt="xnp1n.png" /> and <img src="figures/Pnp1n.png" alt="Pnp1n.png" /></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-center">&#x2026;</td>
+<td class="org-center">&#x2026;</td>
+<td class="org-center">&#x2026;</td>
 </tr>
 </tbody>
 </table>
+
+
+<p>
+The corresponding equations for the kalman filter are listed below:
+</p>
+
+
+
+<p>
+Obviously, it is possible to update it several times before it makes its prediction if the Kalman filter receives several measurements at one timestep.
+</p>
 </div>
 </div>
 </div>
@@ -385,7 +452,7 @@ After given an inital estimation of the state vector and its unceratinty, the Ka
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Zhen Ni</p>
-<p class="date">Created: 2022-11-19 Sat 21:01</p>
+<p class="date">Created: 2022-11-19 Sat 23:00</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

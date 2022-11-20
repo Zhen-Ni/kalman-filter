@@ -20,17 +20,52 @@ The measurement of the system is given by:
 [[file:figures/measurement-of-lti-system.png]]
 
 
+In the concept of Kalman filter, additional unceratinty is introduced to the state-space representation and observation of the system:
+
+[[file:figures/lti-system-with-uncertainty.png]]
+
+
 *** Kalman filter
 The Kalman filter is acutally a state observer of the LTI-system.
 
-The Kalman filter operates in a "predict-correct" loop. In the "predict" step, the estimation of the state vector of the next timestep is calculated along with its unceratinty. And in the "correct" loop, the measurement of the output vector is obtained and it is used to correct the predicted state vector and its unceratinty. 
+The Kalman filter operates in a "predict-correct" loop. In the "predict" step, the estimation of the state vector of the next timestep is calculated along with its unceratinty. And in the "correct" (or "update") step, the measurement of the output vector is obtained and it is used to update the predicted state vector and its unceratinty. 
 
-After given an inital estimation of the state vector and its unceratinty, the Kalman filter is able to make its first prediction. Then, after [[file:figures/dt.png]], the measurement of the system output is obtained, the Kalman filter can correct its last prediction by the measured data, and make new prediction for the next timestep. The following table provides an intuitive explaination of how kalman filter works:
+After given an inital estimation of the state vector and its unceratinty, the Kalman filter is able to make its first prediction. Then, after [[file:figures/dt.png]], the measurement of the system output is obtained, the Kalman filter can correct its last prediction by the measured data, get the updated state variables, and make new prediction for the next timestep. The following table provides an intuitive explaination of how kalman filter works:
 
-| index | timestep | operation                                                           |
-|-------+----------+---------------------------------------------------------------------|
-|     0 |        0 | initial estimation of [[file:figures/x00.png]] and [[file:figures/P00.png]] |
-|     1 |        0 | make predictions of  [[file:figures/x10.png]] and [[file:figures/P10.png]]  |
-|     2 |        1 | get the measured system output [[file:figures/z1.png]]                  |
-|       |          |                                                                     |
+|  <c>  |   <c>    |                                            <c>                                             |
+| index | timestep |                                         operation                                          |
+|-------+----------+--------------------------------------------------------------------------------------------|
+|   0   |    0     |            initial estimation of [[file:figures/x00.png]] and [[file:figures/P00.png]]             |
+|   1   |    0     |         /predict:/ make predictions of [[file:figures/x10.png]] and [[file:figures/P10.png]]         |
+|-------+----------+--------------------------------------------------------------------------------------------|
+|   2   |    1     | get the measured system output [[file:figures/z1.png]] and its unceratinty [[file:figures/R1.png]] |
+|   3   |    1     |   /update:/ update current state [[file:figures/x11.png]] and unceratinty [[file:figures/P11.png]]   |
+|   4   |    1     |         /predict:/ make predictions of [[file:figures/x21.png]] and [[file:figures/P21.png]]         |
+|-------+----------+--------------------------------------------------------------------------------------------|
+|   5   |    2     | get the measured system output [[file:figures/z2.png]] and its unceratinty [[file:figures/R2.png]] |
+|   6   |    2     |   /update:/ update current state [[file:figures/x22.png]] and unceratinty [[file:figures/P22.png]]   |
+|   7   |    2     |         /predict:/ make predictions of [[file:figures/x32.png]] and [[file:figures/P32.png]]         |
+|-------+----------+--------------------------------------------------------------------------------------------|
+|  ...  |   ...    |                                            ...                                             |
+|-------+----------+--------------------------------------------------------------------------------------------|
+| 3n-1  |    n     | get the measured system output [[file:figures/zn.png]] and its unceratinty [[file:figures/Rn.png]] |
+|  3n   |    n     |   /update:/ update current state [[file:figures/xnn.png]] and unceratinty [[file:figures/Pnn.png]]   |
+| 3n+1  |    n     |       /predict:/ make predictions of [[file:figures/xnp1n.png]] and [[file:figures/Pnp1n.png]]       |
+|-------+----------+--------------------------------------------------------------------------------------------|
+|  ...  |   ...    |                                            ...                                             |
 
+
+The corresponding equations for the kalman filter are listed below.
+
+- update:
+
+[[file:figures/update.png]]
+
+- predict:
+
+[[file:figures/predict.png]]
+
+Note that the last equation in the prediction procedure can also be written as:
+[[file:figures/simplified-corvariance-update.png]]
+
+Obviously, it is possible to update the state vector several times before it makes its prediction if the Kalman filter receives several measurements at one timestep.
