@@ -92,12 +92,13 @@ Obviously, it is possible to update the state vector several
 times before it makes its prediction if the Kalman filter
 receives several measurements at one timestep.
 
-** Implementation
+** Usage
 
 The Kalman filter is implemented in ~kalman.py~. This file
 contains a class ~Kalman~, which constructs a kalman filter
 for a system with state-space representation.
 
+*** Initialization
 The state transition matrix ~F~, input transition matrix ~G~,
 and obervation matrix ~H~ can be defined when creating the
 ~Kalman~ instance. These three matrixes can also be defined or
@@ -122,3 +123,54 @@ variables should be manually defined after instantiation:
   kalman_filter.x = x
   kalman_filter.P = P
 #+end_src
+
+*** Predict and update
+After setting the system matrixes and initial values, the
+filter is able to predict or update the state vector of the
+system.
+
+To make predictions, the member function ~predict~ can be
+called with control input ~u~ and its covariance matrix ~Q~:
+ #+begin_src python
+   def predict(self,
+               u: npt.ArrayLike | None = None,
+               Q: npt.ArrayLike | None = None
+               ) -> Kalman: ...
+ #+end_src
+If the system has no control input, ~u~ can be set to ~None~. If ~Q~ is not given, the lastest setted value for ~Q~ will be used.
+
+To update the state vector and its uncertainty, the member
+function ~update~ can be called with measured output ~z~ and its uncertainty matrix ~R~:
+#+begin_src python
+  def update(self,
+             z: npt.NDArray,
+             R: npt.NDArray | None = None
+             ) -> Kalman: ...
+#+end_src
+If ~R~ is not given, its latest setted value will be used.
+
+
+*** Filter property
+The following attributes of the kalman filter can be
+obtained by direct access to its property name:
+| name | description             | comment                |
+| ~F~    | state transition matrix | can be set at any time |
+| ~G~    | input transition matrix | can be set at any time |
+| ~H~    | observation matrix      | can be set at any time |
+| ~x~    | state vector            | can only be set once   |
+| ~P~    | state vector covariance | can only be set once   |
+| ~K~    | Kalman gain matrix      | read-only              |
+
+** Examples
+Numerical examples concerning the Kalman filter are given in ~examples/examples.py~. Here are some snapshots.
+
+- The temperature of heating liquid
+[[file:examples/example8-1.svg]]
+[[file:examples/example8-2.svg]]
+
+- The position of a moving vechicle
+[[file:examples/example9.svg]]
+
+- The altitude of a rocket:
+[[file:examples/example10-1.svg]]
+[[file:examples/example10-2.svg]]
