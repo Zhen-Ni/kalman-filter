@@ -92,7 +92,7 @@ Obviously, it is possible to update the state vector several
 times before it makes its prediction if the Kalman filter
 receives several measurements at one timestep.
 
-** COMMENT Implementation
+** Implementation
 
 The Kalman filter is implemented in ~kalman.py~. This file
 contains a class ~Kalman~, which constructs a kalman filter
