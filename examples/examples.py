@@ -5,10 +5,12 @@
 
 try:
     from kalman import Kalman
+    rootdir = 'examples/'
 except ModuleNotFoundError:
     import sys
     sys.path.append('../')
     from kalman import Kalman
+    rootdir = './'
 
 import numpy as np
 import matplotlib as mpl
@@ -83,6 +85,7 @@ def example6():
     ax.set_xlabel('Measurement number')
     ax.set_ylabel(r'Temperature ($\degree$ C)')
     fig.suptitle('Liquid Temperature')
+    fig.savefig(f'{rootdir}example6-1.svg')
 
     fig = plt.figure(figsize=(6, 4))
     ax = fig.add_subplot(111)
@@ -91,6 +94,7 @@ def example6():
     ax.set_xlabel('Measurement number')
     ax.set_ylabel('Estimate uncertainty')
     fig.suptitle('Estimate uncertainty')
+    fig.savefig(f'{rootdir}example6-2.svg')
 
     fig = plt.figure(figsize=(6, 4))
     ax = fig.add_subplot(111)
@@ -99,6 +103,7 @@ def example6():
     ax.set_xlabel('Measurement number')
     ax.set_ylabel('Kalman gain')
     fig.suptitle('Kalman gain')
+    fig.savefig(f'{rootdir}example6-3.svg')
     
 
 def example7():
@@ -168,7 +173,8 @@ def example7():
     ax.set_xlabel('Measurement number')
     ax.set_ylabel(r'Temperature ($\degree$ C)')
     fig.suptitle('Liquid Temperature')
-
+    fig.savefig(f'{rootdir}example7-1.svg')
+    
     fig = plt.figure(figsize=(6, 4))
     ax = fig.add_subplot(111)
     ax.plot(idx, P_kalman, 'ro-')
@@ -176,6 +182,7 @@ def example7():
     ax.set_xlabel('Measurement number')
     ax.set_ylabel('Estimate uncertainty')
     fig.suptitle('Estimate uncertainty')
+    fig.savefig(f'{rootdir}example7-2.svg')
 
     fig = plt.figure(figsize=(6, 4))
     ax = fig.add_subplot(111)
@@ -184,6 +191,8 @@ def example7():
     ax.set_xlabel('Measurement number')
     ax.set_ylabel('Kalman gain')
     fig.suptitle('Kalman gain')
+    fig.savefig(f'{rootdir}example7-3.svg')
+
 
     ## Extend the measurements, by assuming the true measurement
     ## variance is the assumed value.
@@ -207,6 +216,7 @@ def example7():
     ax.set_xlabel('Measurement number')
     ax.set_ylabel(r'Temperature ($\degree$ C)')
     fig.suptitle('Liquid Temperature')
+    fig.savefig(f'{rootdir}example7-4.svg')
 
 
 def example8():
@@ -276,6 +286,7 @@ def example8():
     ax.set_xlabel('Measurement number')
     ax.set_ylabel(r'Temperature ($\degree$ C)')
     fig.suptitle('Liquid Temperature')
+    fig.savefig(f'{rootdir}example8-1.svg')
 
     fig = plt.figure(figsize=(6, 4))
     ax = fig.add_subplot(111)
@@ -284,6 +295,7 @@ def example8():
     ax.set_xlabel('Measurement number')
     ax.set_ylabel('Kalman gain')
     fig.suptitle('Kalman gain')
+    fig.savefig(f'{rootdir}example8-2.svg')
 
 
 def example9():
@@ -400,6 +412,7 @@ def example9():
     ax.grid()
     ax.set_aspect('equal')
     fig.suptitle('Vehicle position')
+    fig.savefig(f'{rootdir}example9.svg')
     
 
 def example10():
@@ -485,15 +498,16 @@ def example10():
     ax.set_xlabel('Time (s)')
     ax.set_ylabel('Altitude (m)')
     fig.suptitle('Rocket altitude')
+    fig.savefig(f'{rootdir}example10-1.svg')
 
     fig = plt.figure(figsize=(6, 4))
     ax = fig.add_subplot(111)
     ax.plot(t, ks, 'k')
     ax.grid()
-    ax.legend()
     ax.set_xlabel('Time (s)')
     ax.set_ylabel('Kalman gain')
     fig.suptitle('Kalman gain')
+    fig.savefig(f'{rootdir}example10-2.svg')
     
 
 if __name__ == '__main__':
