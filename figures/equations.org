@@ -314,6 +314,15 @@ Github doesn't support previewing latex equations in readme.org, we could genera
 
 * Kalman filter
 
+#+header: :file predict.png :buffer no
+#+begin_src latex
+  \Large
+  $$\hat\matx_{n+1,n}=\matF\matx_{n,n}+\matG\matu_n$$
+  $$\matP_{n+1,n}=\matF\matP_{n,n}\matF^\mathrm{T}+\matQ_n$$
+  where:\\
+  $\matQ_n=E(\matw_n\matw_n\transpose)$ is the process noise uncertainty
+#+end_src
+
 #+RESULTS:
 #+begin_export latex
 #+end_export
@@ -321,10 +330,12 @@ Github doesn't support previewing latex equations in readme.org, we could genera
 #+header: :file update.png :buffer no
 #+begin_src latex
   \Large
-  $$\hat\matx_{n+1,n}=\matF\matx_{n,n}+\matG\matu_n$$
-  $$\matP_{n+1,n}=\matF\matP_{n,n}\matF^\mathrm{T}+\matQ_n$$
-  where:\\
-  $\matQ_n=E(\matw_n\matw_n\transpose)$ is the process noise uncertainty
+  $$\matK_n=\matP_{n,n-1}\matH\tranpose\left(\matH\matP_{n,n-1}\matH\transpose+\matR_n\right)$$
+  $$\hat\matx_{n,n}=\hat\matx_{n,n-1}+\matK_n\left(\matz_n-\matH\hat\matx_{n,n-1}\right)$$
+  $$\matP_{n,n}=\left(\matI-\matK_n\matH\right)\matP_{n,n-1}\left(\matI-\matK_n\matH\right)\transpose+\matK_n\matR_n\matK_n\transpose$$
+  where: \\
+  $\matK_n$ is the Kalman gain \\
+  $\matR_n=E(\matv_n\matv_n\transpose)$ is the measurement uncertainty
 #+end_src
 
 #+RESULTS:
