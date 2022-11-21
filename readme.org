@@ -1,9 +1,11 @@
 * Kalman filter
 ** Theoretical background
 *** LTI system
-The implementation of the code is based on the tutorial from [[https://www.kalmanfilter.net][this site]]. 
+The implementation of the code is based on the tutorial from
+[[https://www.kalmanfilter.net][this site]].
 
-The Kalman filter starts from the state-space representation of a linear time invariant (LTI) system:
+The Kalman filter starts from the state-space representation
+of a linear time invariant (LTI) system:
 
 [[file:figures/lti-system.png]]
 
@@ -11,7 +13,8 @@ The corresponding discrete form is written as:
 
 [[file:figures/lti-system-discrete.png]]
 
-The transformation of the continuous and discrete state-space representations can be given by:
+The transformation of the continuous and discrete
+state-space representations can be given by:
 
 [[file:figures/continuous-to-discrete.png]]
 
@@ -20,17 +23,32 @@ The measurement of the system is given by:
 [[file:figures/measurement-of-lti-system.png]]
 
 
-In the concept of Kalman filter, additional unceratinty is introduced to the state-space representation and observation of the system:
+In the concept of Kalman filter, additional unceratinty is
+introduced to the state-space representation and observation
+of the system:
 
 [[file:figures/lti-system-with-uncertainty.png]]
 
 
 *** Kalman filter
-The Kalman filter is acutally a state observer of the LTI-system.
+The Kalman filter is acutally a state observer of the
+LTI-system.
 
-The Kalman filter operates in a "predict-correct" loop. In the "predict" step, the estimation of the state vector of the next timestep is calculated along with its unceratinty. And in the "correct" (or "update") step, the measurement of the output vector is obtained and it is used to update the predicted state vector and its unceratinty. 
+The Kalman filter operates in a "predict-correct" loop. In
+the "predict" step, the estimation of the state vector of
+the next timestep is calculated along with its
+unceratinty. And in the "correct" (or "update") step, the
+measurement of the output vector is obtained and it is used
+to update the predicted state vector and its unceratinty.
 
-After given an inital estimation of the state vector and its unceratinty, the Kalman filter is able to make its first prediction. Then, after [[file:figures/dt.png]], the measurement of the system output is obtained, the Kalman filter can correct its last prediction by the measured data, get the updated state variables, and make new prediction for the next timestep. The following table provides an intuitive explaination of how kalman filter works:
+After given an inital estimation of the state vector and its
+unceratinty, the Kalman filter is able to make its first
+prediction. Then, after [[file:figures/dt.png]], the measurement
+of the system output is obtained, the Kalman filter can
+correct its last prediction by the measured data, get the
+updated state variables, and make new prediction for the
+next timestep. The following table provides an intuitive
+explaination of how kalman filter works:
 
 |  <c>  |   <c>    |                                            <c>                                             |
 | index | timestep |                                         operation                                          |
@@ -55,7 +73,8 @@ After given an inital estimation of the state vector and its unceratinty, the Ka
 |  ...  |   ...    |                                            ...                                             |
 
 
-The corresponding equations for the kalman filter are listed below.
+The corresponding equations for the kalman filter are listed
+below.
 
 - update:
 
@@ -65,7 +84,41 @@ The corresponding equations for the kalman filter are listed below.
 
 [[file:figures/predict.png]]
 
-Note that the last equation in the prediction procedure can also be written as:
+Note that the last equation in the prediction procedure can
+also be written as:
 [[file:figures/simplified-corvariance-update.png]]
 
-Obviously, it is possible to update the state vector several times before it makes its prediction if the Kalman filter receives several measurements at one timestep.
+Obviously, it is possible to update the state vector several
+times before it makes its prediction if the Kalman filter
+receives several measurements at one timestep.
+
+** COMMENT Implementation
+
+The Kalman filter is implemented in ~kalman.py~. This file
+contains a class ~Kalman~, which constructs a kalman filter
+for a system with state-space representation.
+
+The state transition matrix ~F~, input transition matrix ~G~,
+and obervation matrix ~H~ can be defined when creating the
+~Kalman~ instance. These three matrixes can also be defined or
+modified after the class instance is created. That is:
+#+begin_src python
+  kalman_filter = Kalman(F, G, H)
+#+end_src
+or
+#+begin_src python
+        kalman_filter = Kalman()
+        kalman_filter.F = F
+        kalman_filter.G = G
+        kalman_filter.H = H
+#+end_src
+Note that it is not necessary to set G if the system does
+not have input.
+        
+The state vector and its uncertainty matrix can be accessed
+by attribute ~x~ and ~P~. The initial values of these two
+variables should be manually defined after instantiation:
+#+begin_src python
+  kalman_filter.x = x
+  kalman_filter.P = P
+#+end_src
