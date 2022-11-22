@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 
+"""Implementation of the Kalman filter.
+"""
+
+
 from __future__ import annotations
 
 import numpy as np
 import numpy.typing as npt
+
+
+__all__ = ['Kalman']
 
 
 class Kalman:
@@ -23,7 +30,7 @@ class Kalman:
         kalman_filter.H = H
     Note that it is not necessary to set G if the system does
     not have input.
-        
+
     The state vector and its uncertainty matrix can be accessed by
     attribute `x` and `P`. The initial values of these two variables
     should be manually defined after instantiation:
@@ -36,7 +43,7 @@ class Kalman:
         kalman_filter.update(z, R)
     Users can refer to the docstring of these two member funcitons
     for the usage.
-    
+
     Parameters
     ----------
     F: np.ndarray, optional
@@ -70,7 +77,7 @@ class Kalman:
         self._K = None          # cache for Kalman gain
         self._Q = None          # cache for process noise uncertainty
         self._R = None          # cache for measurement uncertainty
-        
+
         if F is not None:
             self.F = F
         if G is not None:
@@ -111,7 +118,7 @@ class Kalman:
         if self._x is not None:
             raise AttributeError('x has already been set')
         self._x = np.asarray(x)
-    
+
     @property
     def P(self) -> npt.NDArray | None:
         return self._P
