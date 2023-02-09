@@ -21,7 +21,7 @@ Github doesn't support previewing latex equations in readme.org, we could genera
 #+header: :file lti-system-discrete.png :buffer no
 #+BEGIN_SRC latex 
   \Large
-  $$ \dot \matx_{n+1} =  \matF \matx_n + \matG \matu_n $$
+  $$ \matx_{n+1} =  \matF \matx_n + \matG \matu_n $$
   where: \\
   $\matx_{n+1}$ is the state vector at timestep $n+1$ \\
   $\matx_{n}$ is the state vector at timestep $n$ \\
@@ -64,7 +64,7 @@ Github doesn't support previewing latex equations in readme.org, we could genera
 #+header: :file lti-system-with-uncertainty.png :buffer no
 #+begin_src latex
   \Large
-  $$ \dot \matx_{n+1} =  \matF \matx_n + \matG \matu_n +\matw_n$$
+  $$ \matx_{n+1} =  \matF \matx_n + \matG \matu_n +\matw_n$$
   $$\matz _n = \matH x_n + \matv_n$$
   where: \\
   $\matw_n$ is the process noise vector \\
