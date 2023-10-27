@@ -23,7 +23,7 @@ The measurement of the system is given by:
 [[file:figures/measurement-of-lti-system.png]]
 
 
-In the concept of Kalman filter, additional unceratinty is
+In the concept of Kalman filter, additional uncertainty is
 introduced to the state-space representation and observation
 of the system:
 
