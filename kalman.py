@@ -64,9 +64,9 @@ class Kalman:
     """
 
     def __init__(self,
-                 F: npt.NDArray | None = None,
-                 G: npt.NDArray | None = None,
-                 H: npt.NDArray | None = None):
+                 F: npt.ArrayLike | None = None,
+                 G: npt.ArrayLike | None = None,
+                 H: npt.ArrayLike | None = None):
 
         self._F = None          # state transition matrix
         self._G = None          # input transition matrix
