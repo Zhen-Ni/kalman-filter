@@ -165,7 +165,7 @@ class Kalman:
 
         Raises
         ------
-        ValueError
+        AttributeError
             If the system matrixes or initial values are not set.
         """
         try:
